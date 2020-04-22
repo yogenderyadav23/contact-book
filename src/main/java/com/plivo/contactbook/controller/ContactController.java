@@ -1,54 +1,49 @@
 package com.plivo.contactbook.controller;
 
 
+import com.plivo.contactbook.model.entity.PaginatedList;
 import com.plivo.contactbook.model.request.ContactInfo;
 import com.plivo.contactbook.model.response.ApiResponse;
 import com.plivo.contactbook.service.IContactService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value="contact-book/contact")
-public class ContactController extends BaseController {
+public class ContactController {
 
     @Autowired
     private IContactService contactService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ApiResponse getContact()
+    public ApiResponse getContact(@RequestParam(value = "emailId",required = false)String emailId,
+                                  @RequestParam(value ="name",required = false)String firstName,
+                                  @RequestParam(value="pageNo",required=false)Long pageNo)
     {
-        // create a contact here
-        return null;
+     return ApiResponse.buildSuccess(contactService.getContactDetails(emailId,firstName,pageNo));
     }
 
 
-
  @RequestMapping(method = RequestMethod.POST)
- public ApiResponse createContact(@RequestBody @Valid ContactInfo contactInfo)
+  public ApiResponse createContact(@RequestBody @Valid ContactInfo contactInfo)
  {
-       contactService.createContact(contactInfo);
-     return null;
+   contactService.createContact(contactInfo);
+   return ApiResponse.buildSuccess();
  }
-
 
  @RequestMapping(method = RequestMethod.PUT)
  public ApiResponse updateContact(@RequestBody @Valid ContactInfo contactInfo)
- {
-        // create a contact here
-        return null;
+  {
+        return contactService.updateContactDetais(contactInfo)?ApiResponse.buildSuccess():ApiResponse.buildFail();
+
   }
 
-
     @RequestMapping(method = RequestMethod.DELETE)
-    public ApiResponse deleteContact()
+    public ApiResponse deleteContact(@RequestParam(value="emailId") String emailId)
     {
-        // create a contact here
-        return null;
+       contactService.deleteContactDetails(emailId);
+       return ApiResponse.buildSuccess();
     }
 
 

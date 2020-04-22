@@ -1,15 +1,15 @@
 package com.plivo.contactbook.service;
 
-import com.plivo.contactbook.model.entity.ContactDetails;
+import com.plivo.contactbook.model.entity.PaginatedList;
 import com.plivo.contactbook.model.request.ContactInfo;
 
 public interface IContactService {
 
     void createContact(ContactInfo contactInfo);
 
-    ContactInfo getContactDetails();
+    PaginatedList<ContactInfo> getContactDetails(String emailId, String name,Long pageNo);
 
     void deleteContactDetails(String emailId);
 
-    void updateContactDetais(ContactInfo contactInfo);
+    boolean updateContactDetais(ContactInfo contactInfo);
 }
