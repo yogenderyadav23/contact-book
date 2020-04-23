@@ -1,7 +1,7 @@
 package com.plivo.contactbook;
 
 
-import com.plivo.contactbook.dao.ContactDetailsRepositoryImpl;
+import com.plivo.contactbook.dao.mongo.ContactDetailsRepositoryImpl;
 import com.plivo.contactbook.model.entity.Address;
 import com.plivo.contactbook.model.entity.ContactDetails;
 import com.plivo.contactbook.model.entity.PaginatedList;
@@ -9,8 +9,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;

@@ -9,7 +9,8 @@ public enum ContactBookMessageCodes {
     CB01("Invalid email pattern"),
     CB02("Invalid name pattern"),
     CB03("Contact already exist"),
-    CB04("No record(s) found");
+    CB04("No record(s) found"),
+    CB05("No serach parameter is provided");
     private String message;
     ContactBookMessageCodes(String message) {
         this.message = message;

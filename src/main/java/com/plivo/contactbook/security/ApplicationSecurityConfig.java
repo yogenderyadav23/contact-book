@@ -2,6 +2,7 @@ package com.plivo.contactbook.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,7 +16,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
-   @Autowired
+    @Value("${contactbook.username}")
+    private String userName;
+    @Value("${contactbook.password}")
+    private String password;
+
+
+    @Autowired
    private AuthenticationEntryPoint authenticationEntryPoint;
 
     @Override
@@ -27,7 +34,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-      auth.inMemoryAuthentication().withUser("tom").password(passwordEncoder().encode("abc123")).roles("USER");
+      auth.inMemoryAuthentication().withUser(userName).password(passwordEncoder().encode(password)).roles("USER");
     }
     @Bean
     public PasswordEncoder passwordEncoder() {

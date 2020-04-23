@@ -3,12 +3,14 @@ package com.plivo.contactbook.model.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
-public class PaginatedList<T> {
+public class PaginatedList<T> implements Serializable {
 
+    private static final long serialVersionUID = 6232539024161138867L;
     private Long totalPages;
     private Long pageNo;
     private Long pageSize;

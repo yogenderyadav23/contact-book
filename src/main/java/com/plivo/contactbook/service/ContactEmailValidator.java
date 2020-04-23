@@ -1,10 +1,9 @@
 package com.plivo.contactbook.service;
 
-import com.plivo.contactbook.dao.ContactDetailsRepository;
+import com.plivo.contactbook.dao.mongo.ContactDetailsRepository;
 import com.plivo.contactbook.model.constant.ContactBookMessageCodes;
 import com.plivo.contactbook.model.exception.ContactBookException;
 import com.plivo.contactbook.model.request.ContactInfo;
-import com.sun.tracing.dtrace.NameAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

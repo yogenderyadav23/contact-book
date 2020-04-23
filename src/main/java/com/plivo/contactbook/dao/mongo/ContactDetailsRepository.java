@@ -1,4 +1,4 @@
-package com.plivo.contactbook.dao;
+package com.plivo.contactbook.dao.mongo;
 
 import com.plivo.contactbook.model.entity.ContactDetails;
 import com.plivo.contactbook.model.entity.PaginatedList;
@@ -14,6 +14,6 @@ public interface ContactDetailsRepository {
     ContactDetails getContactDetailsById(String emailId);
     PaginatedList<ContactDetails> getContactDetails(String emailId, String firstName,Long pageNo,Long pageSize);
     boolean updateContactDetails(ContactDetails contactDetails);
-    void deleteContactDetails(String id);
+    boolean deleteContactDetails(String id);
 
 }

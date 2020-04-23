@@ -1,6 +1,7 @@
-package com.plivo.contactbook.dao;
+package com.plivo.contactbook.dao.mongo;
 
 import com.mongodb.client.result.UpdateResult;
+import com.plivo.contactbook.dao.mongo.ContactDetailsRepository;
 import com.plivo.contactbook.model.constant.ContactBookMessageCodes;
 import com.plivo.contactbook.model.entity.ContactDetails;
 import com.plivo.contactbook.model.entity.PaginatedList;
@@ -9,15 +10,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -26,7 +22,7 @@ import java.util.List;
 @Repository
 @Getter
 @Setter
-public class ContactDetailsRepositoryImpl implements ContactDetailsRepository  {
+public class ContactDetailsRepositoryImpl implements ContactDetailsRepository {
 
 
     @Autowired
@@ -77,9 +73,11 @@ public class ContactDetailsRepositoryImpl implements ContactDetailsRepository  {
    }
 
     @Override
-    public void deleteContactDetails(String emailId) {
+    public boolean deleteContactDetails(String emailId) {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(emailId));
-        mongoTemplate.findAndRemove(query,ContactDetails.class);
+      ContactDetails contactDetails= mongoTemplate.findAndRemove(query,ContactDetails.class);
+      return (null!=contactDetails);
+
     }
 }

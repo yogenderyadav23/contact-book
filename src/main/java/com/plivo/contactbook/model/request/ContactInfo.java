@@ -8,11 +8,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-public class ContactInfo {
+public class ContactInfo implements Serializable {
 
     @JsonProperty("email_id")
     @NotNull

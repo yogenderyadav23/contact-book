@@ -9,7 +9,7 @@ public interface IContactService {
 
     PaginatedList<ContactInfo> getContactDetails(String emailId, String name,Long pageNo);
 
-    void deleteContactDetails(String emailId);
+    boolean deleteContactDetails(String emailId);
 
     boolean updateContactDetais(ContactInfo contactInfo);
 }
