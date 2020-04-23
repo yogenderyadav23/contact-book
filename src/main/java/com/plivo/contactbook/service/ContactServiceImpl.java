@@ -62,6 +62,7 @@ public class ContactServiceImpl implements IContactService {
         catch (Exception e)
         {
            LOGGER.error("Exception in creating user with contactId:{},Error:{}",contactInfo.getEmailId(),e.getMessage());
+           throw e;
 
         }
       }
