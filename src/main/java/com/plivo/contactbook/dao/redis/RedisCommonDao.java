@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 @Repository
 public class RedisCommonDao{
 
-    @Autowired
+   /* @Autowired
     private RedisTemplate redisTemplate;
 
     public RedisCommonDao() {
@@ -29,5 +29,5 @@ public class RedisCommonDao{
     }
     public Object getValue(String key) {
         return redisTemplate.opsForValue().get(key);
-    }
+    }*/
 }

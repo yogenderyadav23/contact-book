@@ -78,11 +78,11 @@ public class ContactServiceImpl implements IContactService {
         LOGGER.info("Getting search result for emailId:{},firstName:{},pageNo:{}",emailId,name,pageNo);
             // get data from redis
             PaginatedList<ContactInfo> contactInfoPaginatedList;
-            contactInfoPaginatedList = redisContactDao.getContactDetailsList(emailId, name, pageNo);
+          /*  contactInfoPaginatedList = redisContactDao.getContactDetailsList(emailId, name, pageNo);
             if (null != contactInfoPaginatedList)
-                return contactInfoPaginatedList;
+                return contactInfoPaginatedList;*/
 
-            LOGGER.info("Result not found in cache getting it from database");
+      //      LOGGER.info("Result not found in cache getting it from database");
             PaginatedList<ContactDetails> resultList = contactDetailsRepository.getContactDetails(emailId, name, pageNo, pageSize);
             if (resultList.getList().size() == 0)
                 throw new ContactBookException(ContactBookMessageCodes.CB04);
@@ -98,7 +98,7 @@ public class ContactServiceImpl implements IContactService {
                 contactInfoList.add(contactInfo);
             }
             contactInfoPaginatedList = new PaginatedList<>(resultList.getTotalPages(), resultList.getPageNo(), resultList.getPageSize(), contactInfoList);
-            redisContactDao.setContactDetailsList(emailId, name, pageNo, contactInfoPaginatedList, 24);
+         //   redisContactDao.setContactDetailsList(emailId, name, pageNo, contactInfoPaginatedList, 24);
           LOGGER.info("Returning search result for emailId:{},firstName:{},pageNo:{}",emailId,name,pageNo);
             return contactInfoPaginatedList;
 

@@ -13,13 +13,13 @@ import java.util.concurrent.TimeUnit;
 @Repository
 public class RedisContactDao extends RedisCommonDao{
 
-    private static final Logger LOGGER= LoggerFactory.getLogger(RedisContactDao.class);
+    /*private static final Logger LOGGER= LoggerFactory.getLogger(RedisContactDao.class);
 
     private static final String REDIS_CONTACT_DETAILS_KEY_PREFIX = "contactdetails";
 
     public void setContactDetailsList(String emailId, String firstName, long pageNumber, PaginatedList<ContactInfo> list, int expiryInHours)
     {
-        try {
+      *//*  try {
             String detailsKey = REDIS_CONTACT_DETAILS_KEY_PREFIX+"_"+buildKey(emailId,firstName,pageNumber);
             putValueWithExpireTime(detailsKey, list, expiryInHours, TimeUnit.HOURS);
             LOGGER.info("Data set in redis for key:{}",detailsKey);
@@ -27,14 +27,14 @@ public class RedisContactDao extends RedisCommonDao{
         } catch (Exception e) {
             LOGGER.error("Exception in setting data in redis");
             LOGGER.error(e.getLocalizedMessage());
-        }
+        }*//*
 
     }
 
 
     public PaginatedList<ContactInfo> getContactDetailsList(String emailId,String firstName,long pageNumber)
     {
-        PaginatedList<ContactInfo> result=null;
+      *//*  PaginatedList<ContactInfo> result=null;
         try {
             String detailsKey = REDIS_CONTACT_DETAILS_KEY_PREFIX+"_"+buildKey(emailId,firstName,pageNumber);
             return (PaginatedList<ContactInfo>)getValue(detailsKey);
@@ -44,7 +44,8 @@ public class RedisContactDao extends RedisCommonDao{
             LOGGER.error(e.getLocalizedMessage());
         }
 
-        return result;
+        return result;*//*
+
 
     }
 
@@ -59,5 +60,5 @@ public class RedisContactDao extends RedisCommonDao{
         return key.toString();
 
     }
-
+*/
 }
