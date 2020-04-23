@@ -47,21 +47,21 @@ public class ContactServiceImpl implements IContactService {
     public void createContact(ContactInfo contactInfo) {
         try {
 
-            LOGGER.info("Creating contact with contactId:{}",contactInfo.getEmailId());
+            LOGGER.info("Creating contact with emailId:{}",contactInfo.getEmailId());
             contactEmailValidator.validate(contactInfo);
             contactNameValidator.validate(contactInfo);
             ContactDetails contactDetails = ContactDetails.buildContactDetails(contactInfo);
             contactDetailsRepository.createContact(contactDetails);
-            LOGGER.info("Creating created with contactId:{}",contactInfo.getEmailId());
+            LOGGER.info(" Contact created with contactId:{}",contactInfo.getEmailId());
         }
         catch (ContactBookException cb)
         {
-            LOGGER.error("Exception in creating user with contactId:{},code:{},message:{}",contactInfo.getEmailId(),cb.getContactBookMessageCodes().name(),cb.getContactBookMessageCodes().getMessage());
+            LOGGER.error("Exception in creating contact with contactId:{},code:{},message:{}",contactInfo.getEmailId(),cb.getContactBookMessageCodes().name(),cb.getContactBookMessageCodes().getMessage());
             throw cb;
         }
         catch (Exception e)
         {
-           LOGGER.error("Exception in creating user with contactId:{},Error:{}",contactInfo.getEmailId(),e.getMessage());
+           LOGGER.error("Exception in creating contact with contactId:{},Error:{}",contactInfo.getEmailId(),e.getMessage());
            throw e;
 
         }
@@ -114,6 +114,7 @@ public class ContactServiceImpl implements IContactService {
 
     @Override
     public boolean updateContactDetais(ContactInfo contactInfo) {
+        LOGGER.info("Updating contact details for contactId:{}",contactInfo.getEmailId());
         ContactDetails contactDetails=ContactDetails.buildContactDetails(contactInfo);
         return contactDetailsRepository.updateContactDetails(contactDetails);
     }
