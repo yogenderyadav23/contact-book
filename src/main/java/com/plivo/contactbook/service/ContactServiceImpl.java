@@ -25,7 +25,7 @@ public class ContactServiceImpl implements IContactService {
 
     private static final Logger LOGGER= LoggerFactory.getLogger(ContactBookApplication.class);
 
-    @Value("${contact.details.page.size:1}")
+    @Value("${contact.details.page.size:10}")
      private Long pageSize;
 
 
